@@ -17,16 +17,17 @@
 #include <vector>
 #include <tuple>
 #include <cmath>
-
 using std::vector;
 using std::tuple;
+
+template<class T>
 class Matrix {
 private:
-    unsigned m_rowSize;
-    unsigned m_colSize;
-    vector<vector<double> > m_matrix;
+    unsigned m_row_size;
+    unsigned m_col_size;
+    vector<vector<T>>m_matrix;
 public:
-    Matrix(unsigned, unsigned, double);
+    Matrix(unsigned, unsigned , T);
     Matrix(const char *);
     Matrix(const Matrix &);
     ~Matrix();
@@ -38,10 +39,11 @@ public:
     Matrix transpose();
     
     // Scalar Operations
-    Matrix operator+(double);
-    Matrix operator-(double);
-    Matrix operator*(double);
-    Matrix operator/(double);
+    Matrix operator+(T);
+    Matrix operator-(T);
+    Matrix operator*(T);
+    Matrix operator/(T);
+    Matrix operatpr(T);
     
     // Aesthetic Methods
     double& operator()(const unsigned &, const unsigned &);
@@ -50,7 +52,7 @@ public:
     unsigned getCols() const;
     
     // Power Iteration
-    tuple<Matrix, double, int> powerIter(unsigned, double);
+    tuple<Matrix, double, int> powerIter(unsigned, T);
     
     // Deflation
     Matrix deflation(Matrix &, double&);
@@ -66,3 +68,5 @@ public:
     // count occurrences, sort elements in-place, return only unique values from a matrix
     
 };
+
+
