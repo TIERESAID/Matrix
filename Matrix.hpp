@@ -4,8 +4,6 @@
 //
 //  Created by Huncho on 23/10/2020.
 //  Copyright © 2020 TIERE. All rights reserved.
-//
-
 
 #pragma once
 #include <stdio.h>
@@ -27,11 +25,12 @@ private:
     unsigned m_col_size;
     vector<vector<T>>m_matrix;
 public:
-    Matrix(unsigned, unsigned , T);
+    Matrix(unsigned, unsigned , T); // parametrized constructor 
+
     Matrix(const char *);
-    Matrix(const Matrix &);
-    ~Matrix();
-    
+    Matrix(const Matrix &); // copy constructor
+    ~Matrix(); // destructor 
+
     // Matrix Operations
     Matrix operator+(Matrix &);
     Matrix operator-(Matrix &);
@@ -39,17 +38,16 @@ public:
     Matrix transpose();
     
     // Scalar Operations
-    Matrix operator+(T);
-    Matrix operator-(T);
-    Matrix operator*(T);
-    Matrix operator/(T);
-    Matrix operatpr(T);
+    Matrix operator+(double);
+    Matrix operator-(double);
+    Matrix operator*(double);
+    Matrix operator/(double);
+    T& operator()(const unsigned&, const unsigned&);
     
     // Aesthetic Methods
-    double& operator()(const unsigned &, const unsigned &);
     void print() const;
-    unsigned getRows() const;
-    unsigned getCols() const;
+    unsigned getrow() const;
+    unsigned getcol() const;
     
     // Power Iteration
     tuple<Matrix, double, int> powerIter(unsigned, T);
