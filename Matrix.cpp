@@ -28,11 +28,14 @@ template<class T>
 Matrix<T>::~Matrix(){};
 
 //Aesthetic Methods (A const member function cannot change the value of any data member of the class and cannot call any member function which is not constant.)
+
+// return row size
 template<class T>
 unsigned Matrix<T>::getrow()const{
 return this->m_row_size;
 }
 
+//return col size 
 template<class T>
 unsigned Matrix<T>::getcol()const {
 return this->m_col_size ;
@@ -116,3 +119,65 @@ template <class T>
 T& Matrix<T>::operator()(const unsigned& row_no , const unsigned& col_no){
   return this->m_matrix[row_no][col_no] ;
 }
+
+// Matrix addition
+template <class T>
+Matrix<T> Matrix<T>::operator+(Matrix& B){
+  Matrix<T>sum(m_row_size, m_col_size, 0);
+   for (int i = 0; i < m_row_size ; i++)
+   {
+     for (int j = 0; j < m_col_size; j++)
+     {
+       sum(i,j) = this->m_matrix[i][j] + B(i,j);
+     }
+   }
+   return sum;
+}
+
+template<class T>
+Matrix<T> Matrix<T>::operator-(Matrix& B){
+  Matrix<T>sub(m_row_size, m_col_size,0);
+  for (int i = 0; i < m_row_size; ++i)
+  {
+    for (int j = 0; j < m_col_size; ++j)
+    {
+      sub(i,j) = this->matrix[i][j] - B(i,j);
+    }
+  }
+}
+
+template<class T>
+Matrix<T> Matrix<T>::operator*(Matrix& B){
+    Matrix<T> mult(this->m_row_size, B.getcol(),0);
+    for(int i=0; i<m_row_size; i++)
+    {
+      for (int j = 0; j < B.getcol(); ++j)
+      {                  /*or B.getrow()*/
+        for (int k = 0; k < m_col_size; ++k)
+        {
+          mult(i,j) += this->m_matrix[k][j] * B(k,j); 
+        }
+      }
+    }
+    return mult;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
