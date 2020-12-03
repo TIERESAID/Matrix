@@ -51,6 +51,20 @@ public:
     
     // Power Iteration
     tuple<Matrix, double, int> powerIter(unsigned, T);
+    // Trace of the Matrix
+
+    //Determibant of the Matrix 
+    double Determinant( Matrix&, int)const;
+
+    //Transpose of the Matrix
+    Matrix  transpose(Matrix&);
+
+
+    // Calcul the Inverse
+    Matrix  Inverse(Matrix&);
+
+    // Find the rank 
+    int rank(const Matrix&);
     
     // Deflation
     Matrix deflation(Matrix &, double&);

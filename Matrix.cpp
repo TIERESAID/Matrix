@@ -163,8 +163,36 @@ Matrix<T> Matrix<T>::operator*(Matrix& B){
 }
 
 
+template<>
+double Matrix<double>::Determinant(Matrix& A ,int n) const
+{
+  
+  double det = 0.0;
+  Matrix sub_matrix(n,n,0);
 
-
+             if(n ==2)
+    return ( A(0,0)*A(1,1) - A(0,1)*A(1,0) );
+             else {
+   for (int index_power = 0; index_power < n; ++index_power)
+   {
+    int subi = 0;
+     for (int i = 0; i < n; ++i)
+     {
+      int subj = 0;
+       for (int j = 0; j < n; ++j)
+       {
+               if(index_power == j)
+               continue;
+               sub_matrix(subi,subj) =  A(i,j); 
+               subj++;
+       }
+       subi++;
+     }
+     det = det + (pow(-1, index_power) * A(0,index_power) * Determinant( sub_matrix,n-1));
+   }
+ }
+   return det;
+}
 
 
 
